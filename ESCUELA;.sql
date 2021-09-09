@@ -1,0 +1,27 @@
+CREATE DATABASE ESCUELA;
+USE DATABASE ESCUELA;
+
+CREATE TABLE ALUMNOS (
+    NoMatricula VARCHAR(10) PRIMARY KEY,
+    Nombre VARCHAR(50),
+    ActualSemestre INT NOT NULL,
+    Carrera VARCHAR(50),
+)
+CREATE TABLE BOLETAS(
+    FolioBoleta VARCHAR(50) PRIMARY KEY,
+    FechaEmision DATE,
+    NoMatricula VARCHAR(10),
+    FOREIGN KEY (NoMatricula) REFERENCES ALUMNOS(NoMatricula)
+)
+CREATE TABLE MATERIAS(
+    CveMateria VARCHAR(10) PRIMARY KEY,
+    Nombre VARCHAR(50),
+)
+CREATE TABLE MateriaBoleta(
+    CveMateria VARCHAR(10) NOT NULL,
+    FolioBoleta VARCHAR(50) NOT NULL,
+    FOREIGN KEY (CveMateria) REFERENCES MATERIAS(CveMateria),
+    FOREIGN KEY (FolioBoleta) REFERENCES BOLETAS(FolioBoleta)
+
+    PRIMARY KEY (CveMateria, FolioBoleta)
+)
