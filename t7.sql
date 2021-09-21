@@ -1,0 +1,82 @@
+CREATE DATABASE EMPLEADOSDB;
+USE EMPLEADOSDB;
+-- Defaults
+CREATE DEFAULT ESTADO AS 'Activo';
+EXEC sp_bindefault ESTADO, 'PRODUCTOS.estado';
+EXEC sp_bindefault ESTADO, 'PUESTOS.estado';
+-- Tablas
+CREATE TABLE DEPTOS(
+    noDepto INTEGER PRIMARY KEY,
+    descripcion VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE TIPOS(
+    tipo VARCHAR(255) PRIMARY KEY,
+    descripcion VARCHAR(255) NOT NULL
+);
+CREATE TABLE PRODUCTOS(
+    idProducto VARCHAR(255) PRIMARY KEY,
+    descripcion VARCHAR(255) NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    estado VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    FOREIGN KEY (tipo) REFERENCES TIPOS(tipo)
+);
+CREATE TABLE PUESTOS(
+    idPuesto VARCHAR(255) PRIMARY KEY,
+    descripcion VARCHAR(255) NOT NULL,
+    estado VARCHAR(255) NOT NULL
+);
+CREATE TABLE EMPLEADOS( 
+    noEmpleado INTEGER PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    RFC VARCHAR(13) NOT NULL UNIQUE,
+    correo VARCHAR(255) NOT NULL,
+    empresa VARCHAR(255) DEFAULT 'IKE',
+    estado VARCHAR(255),
+    noDepto INTEGER,
+    idPuesto VARCHAR(255),
+    FOREIGN KEY (noDepto) REFERENCES DEPTOS(noDepto),
+    FOREIGN KEY (idPuesto) REFERENCES PUESTOS(idPuesto)
+)
+--Inserciones
+INSERT INTO TIPOS VALUES('3', 'ELECTRONICO'),
+                        ('4', 'MUEBLES'),
+                        ('5', 'BLANCOS');
+
+INSERT INTO PUESTOS VALUES('1', 'Administrador', DEFAULT);
+INSERT INTO PUESTOS VALUES('2', 'Gerente', DEFAULT);
+INSERT INTO PRODUCTOS VALUES('1', 'Producto 1', '2020-01-01', DEFAULT, '5');
+INSERT INTO PRODUCTOS VALUES('2', 'Producto 2', '2020-01-01', DEFAULT, '4');
+INSERT INTO DEPTOS VALUES('1', 'Deposito');
+INSERT INTO DEPTOS VALUES('2', 'Ventas');
+INSERT INTO EMPLEADOS VALUES(
+    1,
+    'Juan',
+    '123456789',
+    'juan@juan.com',
+    DEFAULT,
+    DEFAULT,
+    1,
+    '1' 
+);
+INSERT INTO EMPLEADOS VALUES(
+    2,
+    'Pedro',
+    '123456784',
+    'pedro@pedro.com',
+    DEFAULT,
+    DEFAULT,
+    2,
+    '2'
+);
+
+--Check para productos
+ALTER TABLE PRODUCTOS ADD CONSTRAINT CK_TIPO CHECK (tipo ='3' OR tipo ='4' OR tipo ='5');
+--Selcciones
+SELECT * FROM TIPOS;
+SELECT * FROM PUESTOS;
+SELECT * FROM PRODUCTOS;
+SELECT * FROM DEPTOS;
+SELECT * FROM EMPLEADOS;
+

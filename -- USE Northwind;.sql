@@ -52,4 +52,3 @@ USE ENCUESTAS;
 --     -- tipo
 --     DEFAULT
 -- );
-SELECT * FROM EQUIPOS;
