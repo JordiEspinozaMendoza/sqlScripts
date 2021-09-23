@@ -1,0 +1,75 @@
+-- CREATE DATABASE ORDERSDB;
+USE ORDERSDB;
+-- CREATE TABLE SUPPLIER(
+--     supplerNo INTEGER NOT NULL,
+--     supName VARCHAR(50) NOT NULL,
+--     -- Phone details    
+--     countryCode VARCHAR(3) NOT NULL,
+--     areaCode VARCHAR(3) NOT NULL,
+--     phone VARCHAR(9) NOT NULL,
+--     -- Address details
+--     street VARCHAR(50) NOT NULL,
+--     city VARCHAR(50) NOT NULL,
+--     stateName VARCHAR(50) NOT NULL,
+--     zip VARCHAR(5) NOT NULL,
+--     country VARCHAR(50) NOT NULL,
+--     -- Contact details
+--     contactName VARCHAR(50) NOT NULL,
+-- )
+-- CREATE TABLE CUSTOMER(
+--     custId INTEGER NOT NULL,
+--     firstName VARCHAR(50) NOT NULL,
+--     lastName VARCHAR(50) NOT NULL,
+--     -- Phone details
+--     areaCode VARCHAR(3) NOT NULL,
+--     phone VARCHAR(9) NOT NULL,
+--     -- Address details
+--     street VARCHAR(50) NOT NULL,
+--     city VARCHAR(50) NOT NULL,
+--     stateName VARCHAR(50) NOT NULL,
+--     zip VARCHAR(5) NOT NULL,
+--     -- Credit limit details
+--     creditLimit DECIMAL(19, 4) NOT NULL
+-- );
+-- CREATE TABLE ORDERS(
+--     orderNo INTEGER NOT NULL,
+--     dateOrder DATE,
+--     totalAmount DECIMAL(19, 4) NOT NULL,
+--     tax DECIMAL(19, 4) NOT NULL,
+--     -- Deliver to address
+--     street VARCHAR(50) NOT NULL,
+--     city VARCHAR(50) NOT NULL,
+--     stateName VARCHAR(50) NOT NULL,
+--     zip VARCHAR(5) NOT NULL,
+--     -- Deliver to phone
+--     areaCode VARCHAR(3) NOT NULL,
+--     phone VARCHAR(9) NOT NULL
+-- );
+
+-- CREATE TABLE ITEM(
+--     itemNo INTEGER NOT NULL,
+--     itemName VARCHAR(50) NOT NULL,
+--     unitPrice DECIMAL(19, 4) NOT NULL,
+--     qtyOnHand INTEGER NOT NULL,
+--     reorderPoint INTEGER NOT NULL,
+-- );
+-- CREATE TABLE ORDERITEM(
+--     orderNo INTEGER NOT NULL,
+--     itemNo INTEGER NOT NULL,
+-- );
+-- CREATE TABLE SUPPLERITEM(
+--     itemNo INTEGER NOT NULL,    
+--     supplerNo INTEGER NOT NULL,
+-- );
+-- 2. Crea una restricción que garantice que los valores en límite de crédito estén entre el rango de 10,000 y 100,00.
+-- ALTER TABLE CUSTOMER ADD CONSTRAINT CK_LIMIT CHECK  (creditLimit >=10000 AND creditLimit <= 10000);
+-- 3. Crea una claúsula UNIQUE para el atributo ItemName, de la tabla ITEM.
+ALTER TABLE ITEM ADD CONSTRAINT UK_ITEMNAME UNIQUE (itemName);
+-- 4.Crea mediante una restricción la llave primaria de la tabla CUSTOMER.
+-- ALTER TABLE CUSTOMER ADD CONSTRAINT PK_CUSTOMER PRIMARY KEY (custId);
+-- 5.Crea un valor DEFAULT denominado mínimo, con un valor de 10 y agrégalo al atributo
+-- reorderPoint de la tabla Item.
+ALTER TABLE ITEM ADD CONSTRAINT CK_REORDERPOINT CHECK (reorderPoint >= 10);
+-- 6. Crea una restricción CHECK para asegurar que los valores insertados en country en la
+-- tabla Supplier solo contengan los siguientes valores (México, USA, Japón, Francia,Italia)
+ALTER TABLE SUPPLIER ADD CONSTRAINT CK_COUNTRY CHECK (country IN ('México', 'USA', 'Japón', 'Francia', 'Italia'));
