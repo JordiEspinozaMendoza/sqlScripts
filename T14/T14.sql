@@ -85,11 +85,11 @@ el día y el nombre del profesor.*/
 
 /*6- Realice una consulta a la vista donde muestre la cantidad de socios inscriptos en 
 cada deporte ordenados por cantidad.*/
--- CREATE VIEW SOCIOS_INSCRITOS_POR_DEPORTE AS
--- SELECT c.deporte, COUNT(i.documentosocio) AS "Cantidad de socios inscriptos" FROM inscritos i
--- INNER JOIN cursos c ON i.numero = c.numero
--- GROUP BY c.deporte
--- GO 
+CREATE VIEW SOCIOS_INSCRITOS_POR_DEPORTE AS
+SELECT c.deporte, COUNT(i.documentosocio) AS "Cantidad de socios inscriptos" FROM inscritos i
+INNER JOIN cursos c ON i.numero = c.numero
+GROUP BY c.deporte
+GO 
 
 -- SELECT * FROM SOCIOS_INSCRITOS_POR_DEPORTE
 -- GO
@@ -147,11 +147,11 @@ cada deporte ordenados por cantidad.*/
 -- if object_id('vista_inscritos') is not null drop view vista_inscritos
 -- GO
 
-CREATE VIEW vista_inscritos AS 
-SELECT c.numero, c.deporte, c.dia, COUNT(c.numero) AS "Cantidad de socios inscritos" FROM cursos c
-RIGHT OUTER JOIN inscritos i ON c.numero = i.numero
-GROUP BY c.numero, c.deporte, c.dia
-GO
+-- CREATE VIEW vista_inscritos AS 
+-- SELECT c.numero, c.deporte, c.dia, COUNT(c.numero) AS "Cantidad de socios inscritos" FROM cursos c
+-- RIGHT OUTER JOIN inscritos i ON c.numero = i.numero
+-- GROUP BY c.numero, c.deporte, c.dia
+-- GO
  
 
 -- 15- Consulte la vista:
