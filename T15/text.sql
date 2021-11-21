@@ -1,4 +1,4 @@
--- * SOUNDEX
+-- * DIFFERENCE
 
 -- ? SOUNDEX = Convierte un valor alphanumérico en un código de 4 caracteres
 -- ? que representa como se escucha una palabra al ser pronunciada en inglés.
@@ -31,8 +31,7 @@ GO
 
 -- ? Referencia: https://docs.microsoft.com/en-us/sql/t-sql/functions/replace-transact-sql?view=sql-server-ver15
 
-SELECT REPLACE('This is a Test'  COLLATE Latin1_General_BIN,  
-'Test', 'desk' );  
+SELECT REPLACE('This is a Test', 'Test', 'desk' );  
 GO
 
 -- * SPACE

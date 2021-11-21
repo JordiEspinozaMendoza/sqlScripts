@@ -27,7 +27,11 @@ GO
 -- GO
 -- SELECT * FROM V_PRODUCTS_18_19_20
 -- GO
---4. Encontrar todos los apellidos (LastName) en la tabla Employees que comiencen con la letra S.
+-- 4. Encontrar todos los apellidos (LastName) en la tabla Employees que comiencen con la letra S.
+USE Northwind
+GO
+-- Select all tables
+SELECT * FROM sys.Tables;
 -- SELECT * FROM Employees WHERE LastName LIKE 'S%';
 -- ? View
 -- CREATE VIEW V_EMPLOYEES_S AS SELECT * FROM Employees WHERE LastName LIKE 'S%'

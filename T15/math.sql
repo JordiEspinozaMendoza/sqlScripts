@@ -26,3 +26,18 @@ SELECT @R2 = ((2*(@b)*(@c)))*((COS(@angleA/180*PI())))
 SELECT @result = @result -@R2
 SELECT POWER(@result,0.5) as 'Ley de Cosenos';
 GO
+--? Este ejemplo calcula el ATN2 para los componentes xy especificados y.
+
+DECLARE @x FLOAT = 35.175643, @y FLOAT = 129.44;
+SELECT 'El ATN2 del ángulo es:' + CONVERT (VARCHAR, ATN2 (@y, @x))
+GO
+
+--? Este ejemplo demuestra elevar un número a la potencia de 3 (el cubo del número).
+
+DECLARE @input1 FLOAT;  
+DECLARE @input2 FLOAT;  
+SET @input1= 2;  
+SET @input2 = 2.5;  
+SELECT POWER(@input1, 3) AS Result1, POWER(@input2, 3) AS Result2
+GO
+
